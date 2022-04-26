@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emojis</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="emojis">
+        <button class="emojis__arrow prev">
+          <i class="fa-solid fa-caret-left"></i>
+        </button>
+        <div class="emojis__slider">
+          <div class="slider__content">
+          <p class="emoji smile">&#128513</p>
+          <p class="emoji devil">&#128520</p>
+          <p class="emoji blink">&#128521</p>
+          <p class="emoji love">&#128525</p>
+          <p class="emoji smile">&#128513</p>
+          <p class="emoji cry">&#128557</p>
+          <p class="emoji blink">&#128521</p>
+          <p class="emoji loco">&#128540</p>
+          <p class="emoji devil">&#128520</p>
+          <p class="emoji saint">&#128519</p>
+          <p class="emoji smile">&#128513</p>
+          <p class="emoji loco">&#128540</p>
+        </div>
+        </div>
+        <button class="emojis__arrow next">
+          <i class="fa-solid fa-caret-right"></i>
+        </button>
+      </div>
+      <div class="result"></div>
+    </div>
     <script type="module" src="/main.js"></script>
+    <script src="https://kit.fontawesome.com/f4d54669b9.js" crossorigin="anonymous"></script>
   </body>
 </html>
