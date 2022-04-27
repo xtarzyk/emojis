@@ -1,10 +1,9 @@
-const emojis = document.querySelectorAll('.emoji')
 const visibleEmojis = document.querySelector('.emojis__slider')
 const slider = document.querySelector('.slider__content')
 const prevBtn = document.querySelector('.prev')
 const nextBtn = document.querySelector('.next')
 const result = document.querySelector('.result')
-const emojisMap = new Map()
+const emojisSet = new Set()
 
 const moveRight = () => {
     if (slider.classList.contains('slide-to-center')) {
@@ -46,10 +45,10 @@ const moveLeft = () => {
     slider.classList.add('slide-to-left')
 }
 
-const render = () => {
-    const emojiKeys = Array.from(emojisMap.values())
-
-    result.replaceChildren(...emojiKeys)
+const render = newEmoji => {
+    if (!emojisSet.has(newEmoji.textContent)) {
+        result.appendChild(newEmoji)
+    }
 }
 
 const addEmoji = event => {
@@ -59,19 +58,18 @@ const addEmoji = event => {
     newP.classList.add(...event.target.classList)
 
     if (event.target.classList.contains('emoji')) {
-        emojisMap.set(event.target.textContent, newP)
+        render(newP)
+        emojisSet.add(event.target.textContent)
     }
 }
 
 prevBtn.addEventListener('click', moveLeft)
 nextBtn.addEventListener('click', moveRight)
 
-visibleEmojis.addEventListener('click', event => {
-    addEmoji(event)
-    render()
-})
+visibleEmojis.addEventListener('click', event => addEmoji(event))
 
 result.addEventListener('click', event => {
     result.removeChild(event.target)
-    emojisMap.delete(event.target.textContent)
+    emojisSet.delete(event.target.textContent)
+    console.log(emojisSet)
 })
